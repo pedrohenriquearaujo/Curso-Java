@@ -5,6 +5,9 @@ public class Conta {
 	private String numero;
 	private double saldo;
 	
+	public Conta(String numeroConta){
+		this.numero = numeroConta;
+	}
 	
 	public String getNumero() {
 		return numero;
