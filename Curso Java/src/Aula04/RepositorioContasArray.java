@@ -2,10 +2,15 @@ package Aula04;
 
 public class RepositorioContasArray {
 
+	
+
 	public static final int TAM_CACHE_CONTAS = 100;
 	private Conta contas[];
-	private int indice;
+	private static int indice;
 	
+	public static int getIndice() {
+		return indice;
+	}
 	
 	public RepositorioContasArray(){
 		indice = 0;
@@ -20,8 +25,13 @@ public class RepositorioContasArray {
 	
 	public void atualizar (Conta c){
 		
-		contas[procurarIndice(c.getNumero())]= c;
+		int i = procurarIndice(c.getNumero());
 		
+		if(i != -1){			
+			contas[i]= c;
+		}else{
+			System.out.println("Conta não encontrada");
+		}
 	}
 	
 	public void remover (String numeroConta){
@@ -36,10 +46,12 @@ public class RepositorioContasArray {
 	}
 	
 	private int procurarIndice(String numeroConta){
-		int i=0;
+		
 		int ind =-1;
-		for(Conta c: contas){
-			if(c.getNumero().equals(numeroConta)){
+		
+		for(int i=0; i < RepositorioContasArray.getIndice();i++){
+			
+			if(contas[i].getNumero().equals(numeroConta)){
 				ind=i;
 				break;				
 			}
@@ -54,8 +66,9 @@ public class RepositorioContasArray {
 		
 		int i = procurarIndice(numeroConta);
 		
-		if( i != -1)
+		if( i != -1){
 			resp = true;
+		}
 		
 		return resp;
 		
@@ -69,10 +82,9 @@ public class RepositorioContasArray {
 		
 		if(i != -1 ){
 			contas[i] = c;
-		}else
+		}else{
 			System.out.println("Conta não encontrada");
-		
-		return c;
-		
+		}		
+		return c;		
 	}
 }
