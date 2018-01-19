@@ -13,13 +13,14 @@ public class RepositorioContasArray {
 	}
 	
 	public void inserir(Conta c){
-		contas[indice] = c;
-		indice++;
 		
+		contas[indice] = c;
+		indice++;		
 	}
 	
 	public void atualizar (Conta c){
 		
+		contas[procurarIndice(c.getNumero())]= c;
 		
 	}
 	
@@ -29,8 +30,7 @@ public class RepositorioContasArray {
 			int i = procurarIndice(numeroConta);
 			contas[i] = contas[indice - 1];
 			contas[indice - 1] = null;
-			indice = indice - 1;
-			
+			indice = indice - 1;			
 		}
 		
 	}
@@ -62,11 +62,17 @@ public class RepositorioContasArray {
 	}
 	
 	public Conta procurar(String numeroConta){
-				
+		
+		Conta c = null;
+		
+		int i = procurarIndice(numeroConta);
+		
+		if(i != -1 ){
+			contas[i] = c;
+		}else
+			System.out.println("Conta não encontrada");
+		
+		return c;
+		
 	}
-	
-	
-	
-	
-	
 }
