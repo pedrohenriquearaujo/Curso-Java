@@ -1,4 +1,4 @@
-package Aula04;
+package Aulas;
 
 public class Conta {
 	
@@ -24,7 +24,7 @@ public class Conta {
 	public void debitar (double valor) {		
 		this.saldo -= valor;
 	}	
-	public void cretidar (double valor) {
+	public void creditar (double valor) {
 		this.saldo += valor;
 	}	
 	

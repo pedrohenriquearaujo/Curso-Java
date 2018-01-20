@@ -1,4 +1,4 @@
-package Aula04;
+package Aulas;
 
 public class RepositorioContasArray {
 	
