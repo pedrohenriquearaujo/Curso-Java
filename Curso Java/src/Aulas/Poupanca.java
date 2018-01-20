@@ -1,7 +1,7 @@
 package Aulas;
 
 public class Poupanca extends Conta {
-
+	
 	public Poupanca(String numeroConta) {
 		super(numeroConta);		
 	}
