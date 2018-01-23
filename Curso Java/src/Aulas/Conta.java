@@ -4,8 +4,10 @@ public class Conta {
 	
 	private String numero;
 	private double saldo;
+
 	
-	public Conta(String numeroConta){
+	public Conta(String numeroConta, double saldo){
+		this.saldo = saldo;
 		this.numero = numeroConta;
 	}
 	
@@ -26,6 +28,13 @@ public class Conta {
 	}	
 	public void creditar (double valor) {
 		this.saldo += valor;
-	}	
-	
+	}		
+	public void transferir(Conta c, double valor){		
+		this.debitar(valor);
+		c.creditar(valor);		
+	}
+	public boolean equals(Conta c) {
+					
+		return this.numero.equals(c.getNumero());
+	}
 }
