@@ -2,7 +2,7 @@ package Aulas;
 
 public class RepositorioContasArray {
 	
-	public static final int TAM_CACHE_CONTAS = 100;
+	private static final int TAM_CACHE_CONTAS = 100;
 	private Conta contas[];
 	private static int indice;
 	
@@ -44,12 +44,11 @@ public class RepositorioContasArray {
 		
 		int ind =-1;
 		
-		for(int i=0; i < RepositorioContasArray.getIndice();i++){			
+		for(int i=0; i <= RepositorioContasArray.getIndice();i++){			
 			if(contas[i].getNumero().equals(numeroConta)){
 				ind=i;
 				break;				
-			}
-			i++;			
+			}				
 		}
 		return ind;		
 	}
@@ -71,7 +70,7 @@ public class RepositorioContasArray {
 		int i = procurarIndice(numeroConta);
 		
 		if(i != -1 ){
-			contas[i] = c;
+			 c = contas[i];
 		}else{
 			System.out.println("Conta não encontrada");
 		}		
