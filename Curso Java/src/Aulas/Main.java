@@ -6,20 +6,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		RepositorioContasArray r = new RepositorioContasArray();
-		//Conta c = new Conta("123456", 200.5);
-		/*
-		ContaBonificada c3 = (ContaBonificada) new Conta(null, 0);
-		c3.renderBonus();
-		Poupanca c1 = new Poupanca(null);
-		c1.transferir(c1, 200);
-		c.transferir(c1, 50);
-		c1.renderJuros(20);
-		*/
-	
 		
-	
-		
-<<<<<<< HEAD
 		menu(r);
 	}
 	
@@ -27,8 +14,6 @@ public class Main {
 		
 		String numeroConta;
 		int saldo;
-		
-		
 		
 		Scanner scan = new Scanner(System.in);
 		
@@ -42,35 +27,14 @@ public class Main {
 		saldo = scan.nextInt();
 		
 		
-		Conta c = new Conta(numeroConta, saldo);
+		//Conta c = new Conta(numeroConta, saldo);
 		
-		r.inserir(c);		
-	}
-=======
-		/*		
-		r.inserir(c);
-		r.inserir(c1);
-		r.inserir(c2);
-		r.inserir(c3);
-		r.inserir(c4);
->>>>>>> fdd5bbb4b3aafad698ca3fb917504cc795940d45
-	
+		//r.inserir(c);		
+}
 	public static void menu(RepositorioContasArray r ) {
-		
-<<<<<<< HEAD
-		int op;
-		Scanner scan = new Scanner(System.in);
-=======
-		c4.renderJuros(20);
-		*/
-		
->>>>>>> fdd5bbb4b3aafad698ca3fb917504cc795940d45
-		
-		
-		//System.out.println(c3.getSaldo());
-		//System.out.println(c3.getNumero());
-		preencher(r);
-		r.procurar("ABCD");
+			
+			int op;
+			Scanner scan = new Scanner(System.in);
 		
 do {
 	
@@ -93,7 +57,7 @@ do {
 		break;}	
 	case 3:{
 		
-<<<<<<< HEAD
+
 		break;}	
 	case 4:{
 		remover(r);
@@ -105,33 +69,15 @@ do {
 	
 		break;}	
 	default:{
-		System.out.println("Opção Invalida");			
-	}		
-=======
-			
+		System.out.println("Opção Invalida");}		
+	
 	}
 	
-	public static void preencher(RepositorioContasArray r){
-		Conta c = new Conta("123456", 200.0);
-
-		Conta c1 = new Conta("456",200.0);
-		Conta c2 = new Conta("789",200.0);
-		Conta c3 = new Poupanca("753",100.1);
-		Poupanca c4 = new Poupanca("234",56.4);			
-		r.inserir(c);
-		r.inserir(c1);
-		r.inserir(c2);
-		r.inserir(c3);
-		r.inserir(c4);
-		
->>>>>>> fdd5bbb4b3aafad698ca3fb917504cc795940d45
-	}
-	
-}while(op != 6);
-		scan.close();
-	}
 
 
+  }while(op != 6);
+
+}
 	public static void consultar(RepositorioContasArray r) {
 		String numero;
 		Conta c;
@@ -148,7 +94,6 @@ do {
 		}		
 		
 	}
-	
 	public static void remover(RepositorioContasArray r) {
 		
 		String numero;

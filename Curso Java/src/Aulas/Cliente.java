@@ -3,7 +3,7 @@ package Aulas;
 public class Cliente {
 	private String CPF;
 	private String nome;
-<<<<<<< HEAD
+	private Conta c;
 	private Endereco endereco;
 	
 	public Cliente(String CPF, String nome) {	
@@ -43,8 +43,4 @@ public class Cliente {
 
 }
 
-=======
-	private String Endereco;
 
-}
->>>>>>> fdd5bbb4b3aafad698ca3fb917504cc795940d45

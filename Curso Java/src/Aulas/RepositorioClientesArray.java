@@ -1,6 +1,6 @@
 package Aulas;
 
-<<<<<<< HEAD
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +16,6 @@ public class RepositorioClientesArray {
 	public void inserir(Cliente c) {
 		clientes.add(c);
 	}
-	
 	public void atualizar(Cliente c) {
 		
 		int i = procurarIndice(c.getCPF());
@@ -27,7 +26,6 @@ public class RepositorioClientesArray {
 			System.out.println("Conta não existe");
 		}
 	}
-	
 	private int procurarIndice(String CPF) {
 		
 		int ind = -1;
@@ -40,7 +38,6 @@ public class RepositorioClientesArray {
 		}
 		return ind;		
 	}
-	
 	public void remover (String CPF) {
 			
 		if(existe(CPF)) {
@@ -49,7 +46,6 @@ public class RepositorioClientesArray {
 		}
 		
 	}
-	
 	public boolean existe (String CPF){	
 		
 		boolean resp = false;
@@ -61,7 +57,6 @@ public class RepositorioClientesArray {
 		}		
 		return resp;		
 	}
-	
 	public Cliente procurar(String CPF) {
 		
 		Cliente c = null;
@@ -77,8 +72,6 @@ public class RepositorioClientesArray {
 		return c;
 	}
 	
-=======
-public class RepositorioClientesArray {
 
->>>>>>> fdd5bbb4b3aafad698ca3fb917504cc795940d45
 }
+
