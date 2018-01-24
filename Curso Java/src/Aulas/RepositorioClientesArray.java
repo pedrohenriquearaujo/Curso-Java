@@ -1,5 +1,6 @@
 package Aulas;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,4 +77,8 @@ public class RepositorioClientesArray {
 		return c;
 	}
 	
+=======
+public class RepositorioClientesArray {
+
+>>>>>>> fdd5bbb4b3aafad698ca3fb917504cc795940d45
 }
