@@ -1,9 +1,12 @@
-package Aulas;
+package br.unicap.internetbanking.dados;
 
-public class RepositorioContasArray {
+import br.unicap.internetbanking.interfaces.RepositorioContas;
+import br.unicap.internetbanking.negocio.ContaAbstrata;
+
+public class RepositorioContasArray implements RepositorioContas {
 	
 	private static final int TAM_CACHE_CONTAS = 100;
-	private Conta contas[];
+	private ContaAbstrata contas[];
 	private static int indice;
 	
 	public static int getIndice() {
@@ -12,21 +15,19 @@ public class RepositorioContasArray {
 	
 	public RepositorioContasArray(){
 		indice = 0;
-		contas = new Conta [TAM_CACHE_CONTAS];		
+		contas = new ContaAbstrata [TAM_CACHE_CONTAS];		
 	}
 	
-	public void inserir(Conta c){		
+	public void inserir(ContaAbstrata c){		
 		contas[indice] = c;
 		indice++;		
 	}
 	
-	public void atualizar (Conta c){		
+	public void atualizar (ContaAbstrata c){		
 		int i = procurarIndice(c.getNumero());
 		
 		if(i != -1){			
 			contas[i]= c;
-		}else{
-			System.out.println("Conta não encontrada");
 		}
 	}
 	
@@ -44,7 +45,7 @@ public class RepositorioContasArray {
 		
 		int ind =-1;
 		
-		for(int i=0; i <= RepositorioContasArray.getIndice();i++){			
+		for(int i=0; i < RepositorioContasArray.getIndice();i++){			
 			if(contas[i].getNumero().equals(numeroConta)){
 				ind=i;
 				break;				
@@ -64,16 +65,14 @@ public class RepositorioContasArray {
 		return resp;		
 	}
 	
-	public Conta procurar(String numeroConta){		
-		Conta c = null;
+	public ContaAbstrata procurar(String numeroConta){		
+		ContaAbstrata c = null;
 		
 		int i = procurarIndice(numeroConta);
 		
 		if(i != -1 ){
 			 c = contas[i];
-		}else{
-			System.out.println("Conta não encontrada");
-		}		
+		}	
 		return c;		
 	}
 }

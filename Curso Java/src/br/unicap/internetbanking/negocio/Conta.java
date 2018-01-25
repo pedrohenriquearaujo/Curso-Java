@@ -1,4 +1,4 @@
-package Aulas;
+package br.unicap.internetbanking.negocio;
 
 public class Conta extends ContaAbstrata {
 	
@@ -10,16 +10,16 @@ public class Conta extends ContaAbstrata {
 	}
 	
 	
-	public void debitar (double valor) {		
+	public void debitar (double valor) {
 		
+		double saldo = getSaldo();
+		
+			if(valor <= saldo){
+				setSaldo(saldo - valor);
+			} else {
+				System.out.println("Saldo insuficiente");
+			}
 	}	
-	public void creditar (double valor) {
-		
-	}		
-	public void transferir(ContaAbstrata c, double valor){		
-		this.debitar(valor);
-		c.creditar(valor);		
-	}
 	public boolean equals(ContaAbstrata c) {
 		return this.getNumero().equals(c.getNumero());
 	}

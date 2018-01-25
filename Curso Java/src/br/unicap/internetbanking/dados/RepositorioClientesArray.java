@@ -1,10 +1,13 @@
-package Aulas;
+package br.unicap.internetbanking.dados;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioClientesArray {
+import br.unicap.internetbanking.interfaces.RepositorioClientes;
+import br.unicap.internetbanking.negocio.Cliente;
+
+public class RepositorioClientesArray implements RepositorioClientes {
 	
 	private List<Cliente> clientes;
 	
@@ -72,6 +75,5 @@ public class RepositorioClientesArray {
 		return c;
 	}
 	
-
 }
 

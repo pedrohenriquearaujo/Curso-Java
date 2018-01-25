@@ -1,4 +1,4 @@
-package Aulas;
+package br.unicap.internetbanking.negocio;
 
 public class Endereco {
 
@@ -6,7 +6,7 @@ public class Endereco {
 	private String bairro;
 	private String CEP;
 	private String numero;	
-	private TipoCliente tipo;
+	
 	
 	public Endereco(String rua, String bairro, String CEP, String numero) {
 		super();

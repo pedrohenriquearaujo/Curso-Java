@@ -1,14 +1,16 @@
-package Aulas;
+package br.unicap.internetbanking.negocio;
 
 public class Cliente {
 	private String CPF;
 	private String nome;
 	private Conta c;
 	private Endereco endereco;
+	private static TipoCliente tipo;
 	
-	public Cliente(String CPF, String nome) {	
+	public Cliente(String CPF, String nome, TipoCliente tipo) {	
 		this.CPF = CPF;
 		this.nome = nome;
+		this.tipo = tipo;
 	}	
 	public Cliente(String CPF, String nome, Endereco endereco) {		
 		this.CPF = CPF;

@@ -1,4 +1,4 @@
-package Aulas;
+package br.unicap.internetbanking.negocio;
 
 public enum TipoCliente {
 	
