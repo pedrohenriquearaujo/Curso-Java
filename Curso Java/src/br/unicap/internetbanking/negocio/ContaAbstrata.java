@@ -1,5 +1,7 @@
 package br.unicap.internetbanking.negocio;
 
+import br.unicap.internetbanking.excecoes.SaldoInsuficienteException;
+
 public abstract class ContaAbstrata {
 	
 	
@@ -9,8 +11,7 @@ public abstract class ContaAbstrata {
 	
 	
 	public ContaAbstrata(String numeroConta, Cliente cliente) {
-		this.numero = numeroConta;
-		this.cliente = cliente;
+		this(numeroConta,0,cliente);	
 	}
 	public ContaAbstrata(String numeroConta, double saldo, Cliente cliente) {
 		this.numero = numeroConta;
@@ -37,11 +38,11 @@ public abstract class ContaAbstrata {
 		return cliente;
 	}
 	
-	public abstract void debitar(double valor);
+	public abstract void debitar(double valor) throws SaldoInsuficienteException;
 	public void creditar(double valor) {
 		this.saldo += valor;
 	}
-	public void transferir(ContaAbstrata conta,double valor) {
+	public void transferir(ContaAbstrata conta,double valor) throws SaldoInsuficienteException {
 		this.debitar(valor);
 		conta.creditar(valor);
 	}

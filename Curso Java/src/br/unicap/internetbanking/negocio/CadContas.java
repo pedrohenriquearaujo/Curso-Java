@@ -1,6 +1,8 @@
 package br.unicap.internetbanking.negocio;
 
 import br.unicap.internetbanking.dados.RepositorioContasArray;
+import br.unicap.internetbanking.excecoes.ContaInexistenteException;
+import br.unicap.internetbanking.excecoes.SaldoInsuficienteException;
 
 public class CadContas {
 	
@@ -11,7 +13,7 @@ public class CadContas {
 	}
 	
 
-	public void inserir(ContaAbstrata c){
+	public void inserir(ContaAbstrata c) {
 		
 		if(!r.existe(c.getNumero())){		
 			r.inserir(c);
@@ -19,11 +21,11 @@ public class CadContas {
 			System.out.println("Conta já Existe");
 		}
 	}	
-	public void atualizar (ContaAbstrata c){
+	public void atualizar (ContaAbstrata c) throws ContaInexistenteException {
 			if(r.procurar(c.getNumero()) != null) {
 				r.atualizar(c);
 			}else {
-				System.out.println("Conta Não Existe");
+				throw new ContaInexistenteException(c.getNumero());
 			}
 			
 			
@@ -31,30 +33,31 @@ public class CadContas {
 	public void remover (String numeroConta){
 			r.remover(numeroConta);	
 	}
-	public ContaAbstrata procurar(String numeroConta){
+	public ContaAbstrata procurar(String numeroConta) throws ContaInexistenteException{
 		return r.procurar(numeroConta);		
 	}
 
 
-	public void creditar(String n, double v) {
+	public void creditar(String n, double v) throws ContaInexistenteException  {
 		ContaAbstrata c = r.procurar(n);
+		
 		if(c != null) {
 		
 		c.creditar(v);
 		//r.atualizar(c);
 		}else {
-			System.out.println("Conta Inexistente");			
+			throw new ContaInexistenteException(c.getNumero());			
 		}
 	}
 	
-	public void debitar(String n, double v) {
+	public void debitar(String n, double v) throws SaldoInsuficienteException, ContaInexistenteException {
 		ContaAbstrata c = r.procurar(n);
 		c.debitar(v);
 		r.atualizar(c);		
 	}
 
 
-	public void transferir(String origem, String destino, double val) {
+	public void transferir(String origem, String destino, double val) throws SaldoInsuficienteException, ContaInexistenteException {
 		ContaAbstrata o = r.procurar(origem);
 		ContaAbstrata d = r.procurar(destino);
 		

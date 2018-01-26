@@ -1,8 +1,7 @@
 package br.unicap.internetbanking.gui;
 
-import java.util.Scanner;
-
-
+import br.unicap.internetbanking.excecoes.ContaInexistenteException;
+import br.unicap.internetbanking.excecoes.SaldoInsuficienteException;
 import br.unicap.internetbanking.negocio.Cliente;
 import br.unicap.internetbanking.negocio.Conta;
 import br.unicap.internetbanking.negocio.ContaAbstrata;
@@ -14,7 +13,7 @@ import br.unicap.internetbanking.negocio.TipoCliente;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception  {
 		
 		Fachada f = Fachada.getInstacia();
 		
@@ -34,7 +33,24 @@ public class Main {
 		f.cadastrar(b);
 		f.cadastrar(i);
 		
-		f.transferir("1", "2", 1000);
+	
+		
+		try {
+			
+			f.RenderJuros("2");
+			
+			System.out.println("Débito efetuado");
+			System.out.println(p.getSaldo());
+			}
+		catch (ContaInexistenteException e) {	
+			
+			System.out.println(e.getMessage());
+			System.out.println("Conta: " + e.getNumeroConta());
+			
+			//System.out.println("Saldo: " + e.getSaldoAtual());
+			
+			}
+		
 		
 		/*
 		f.creditar("1", 200);
@@ -46,13 +62,13 @@ public class Main {
 		f.debitar("2", 200);
 		f.debitar("3", 200);
 		f.debitar("4", 200);
-		*/
+		
 		
 		System.out.println(f.procurarConta("1").getSaldo());
 		System.out.println(f.procurarConta("2").getSaldo());
 		System.out.println(f.procurarConta("3").getSaldo());
 		System.out.println(f.procurarConta("4").getSaldo());	
-		
+		*/
 		
 
 	

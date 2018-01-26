@@ -1,6 +1,7 @@
 package br.unicap.internetbanking.negocio;
 
 import br.unicap.internetbanking.dados.RepositorioClientesArray;
+import br.unicap.internetbanking.excecoes.ClienteInexistenteException;
 
 
 public class CadClientes {
@@ -21,7 +22,7 @@ public class CadClientes {
 	public void remover(String CPF) {
 		r.remover(CPF);
 	}
-	public Cliente procurar(String CPF) {
+	public Cliente procurar(String CPF) throws ClienteInexistenteException {
 		return r.procurar(CPF);		
 	}
 	public void atualizar(Cliente c) {

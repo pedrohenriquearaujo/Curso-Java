@@ -4,10 +4,12 @@ package br.unicap.internetbanking.dados;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.unicap.internetbanking.interfaces.RepositorioClientes;
+import br.unicap.internetbanking.excecoes.ClienteInexistenteException;
+import br.unicap.internetbanking.excecoes.ContaInexistenteException;
+import br.unicap.internetbanking.interfaces.IRepositorioClientes;
 import br.unicap.internetbanking.negocio.Cliente;
 
-public class RepositorioClientesArray implements RepositorioClientes {
+public class RepositorioClientesArray implements IRepositorioClientes {
 	
 	private List<Cliente> clientes;
 	
@@ -60,7 +62,7 @@ public class RepositorioClientesArray implements RepositorioClientes {
 		}		
 		return resp;		
 	}
-	public Cliente procurar(String CPF) {
+	public Cliente procurar(String CPF) throws ClienteInexistenteException {
 		
 		Cliente c = null;
 		
@@ -69,7 +71,7 @@ public class RepositorioClientesArray implements RepositorioClientes {
 		if(i != -1) {
 			c = clientes.get(i);			
 		}else {
-			System.out.println("Conta não encontrada");
+			throw new ClienteInexistenteException(CPF);
 		}
 		
 		return c;
