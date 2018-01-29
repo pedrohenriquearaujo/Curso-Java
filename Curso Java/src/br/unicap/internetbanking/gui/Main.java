@@ -1,5 +1,6 @@
 package br.unicap.internetbanking.gui;
 
+import br.unicap.internetbanking.excecoes.ClienteInexistenteException;
 import br.unicap.internetbanking.excecoes.ContaInexistenteException;
 import br.unicap.internetbanking.excecoes.SaldoInsuficienteException;
 import br.unicap.internetbanking.negocio.Cliente;
@@ -23,10 +24,12 @@ public class Main {
 		f.cadastrar(cliente);
 		
 		
-		ContaAbstrata c = new Conta("1", 3000,cliente);		
-		ContaAbstrata p = new Poupanca("2",3000,cliente);
-		ContaAbstrata b = new ContaBonificada("3", 3000,cliente);
-		ContaAbstrata i = new ContaImposto("4", 3000,cliente);
+		ContaAbstrata c = new Conta("1", 100,cliente);		
+		ContaAbstrata p = new Poupanca("2",100,cliente);
+		ContaAbstrata b = new ContaBonificada("3", 100,cliente);
+		ContaAbstrata i = new ContaImposto("4", 100,cliente);
+		
+	
 		
 		f.cadastrar(c);
 		f.cadastrar(p);
@@ -36,16 +39,13 @@ public class Main {
 	
 		
 		try {
-			
-			f.RenderJuros("2");
-			
-			System.out.println("Débito efetuado");
-			System.out.println(p.getSaldo());
+			cliente = f.procurarCliente("087");
+			System.out.println(cliente.getCPF());
 			}
-		catch (ContaInexistenteException e) {	
+		catch (ClienteInexistenteException e) {	
 			
 			System.out.println(e.getMessage());
-			System.out.println("Conta: " + e.getNumeroConta());
+			//System.out.println("Conta: " + e.getNumeroConta());
 			
 			//System.out.println("Saldo: " + e.getSaldoAtual());
 			

@@ -1,6 +1,7 @@
 package br.unicap.internetbanking.negocio;
 
 import br.unicap.internetbanking.dados.RepositorioContasArray;
+import br.unicap.internetbanking.excecoes.ContaExistenteException;
 import br.unicap.internetbanking.excecoes.ContaInexistenteException;
 import br.unicap.internetbanking.excecoes.SaldoInsuficienteException;
 
@@ -13,12 +14,12 @@ public class CadContas {
 	}
 	
 
-	public void inserir(ContaAbstrata c) {
+	public void inserir(ContaAbstrata c) throws ContaExistenteException {
 		
 		if(!r.existe(c.getNumero())){		
 			r.inserir(c);
 		}else{
-			System.out.println("Conta já Existe");
+			throw new ContaExistenteException(c.getNumero());
 		}
 	}	
 	public void atualizar (ContaAbstrata c) throws ContaInexistenteException {
@@ -27,43 +28,28 @@ public class CadContas {
 			}else {
 				throw new ContaInexistenteException(c.getNumero());
 			}
-			
-			
 	}	
-	public void remover (String numeroConta){
+	public void remover (String numeroConta) throws ContaInexistenteException{
 			r.remover(numeroConta);	
 	}
 	public ContaAbstrata procurar(String numeroConta) throws ContaInexistenteException{
 		return r.procurar(numeroConta);		
 	}
-
-
-	public void creditar(String n, double v) throws ContaInexistenteException  {
-		ContaAbstrata c = r.procurar(n);
-		
-		if(c != null) {
-		
+	public void creditar(String n, double v) throws ContaInexistenteException, SaldoInsuficienteException  {
+		ContaAbstrata c = r.procurar(n);		
 		c.creditar(v);
-		//r.atualizar(c);
-		}else {
-			throw new ContaInexistenteException(c.getNumero());			
-		}
 	}
 	
 	public void debitar(String n, double v) throws SaldoInsuficienteException, ContaInexistenteException {
-		ContaAbstrata c = r.procurar(n);
-		c.debitar(v);
-		r.atualizar(c);		
+		ContaAbstrata c = r.procurar(n);	
+		c.debitar(v);		
 	}
-
 
 	public void transferir(String origem, String destino, double val) throws SaldoInsuficienteException, ContaInexistenteException {
 		ContaAbstrata o = r.procurar(origem);
 		ContaAbstrata d = r.procurar(destino);
-		
 		o.transferir(d, val);
-		r.atualizar(o);
-		r.atualizar(d);
+		
 	}
 	
 }

@@ -13,7 +13,6 @@ public class RepositorioClientesArray implements IRepositorioClientes {
 	
 	private List<Cliente> clientes;
 	
-	
 	public RepositorioClientesArray() {
 		this.clientes = new ArrayList<Cliente>();
 	}
@@ -21,14 +20,14 @@ public class RepositorioClientesArray implements IRepositorioClientes {
 	public void inserir(Cliente c) {
 		clientes.add(c);
 	}
-	public void atualizar(Cliente c) {
+	public void atualizar(Cliente c) throws ClienteInexistenteException {
 		
 		int i = procurarIndice(c.getCPF());
 		
 		if(i != -1) {
 			clientes.add(i,c);
 		}else {
-			System.out.println("Conta não existe");
+			throw new ClienteInexistenteException (c.getNome());
 		}
 	}
 	private int procurarIndice(String CPF) {
@@ -43,11 +42,13 @@ public class RepositorioClientesArray implements IRepositorioClientes {
 		}
 		return ind;		
 	}
-	public void remover (String CPF) {
+	public void remover (String CPF) throws ClienteInexistenteException {
 			
 		if(existe(CPF)) {
 			int i = procurarIndice(CPF);			
 			clientes.remove(clientes.get(i));
+		}else {
+			throw new ClienteInexistenteException(CPF);
 		}
 		
 	}

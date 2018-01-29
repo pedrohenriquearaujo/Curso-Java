@@ -2,7 +2,9 @@ package br.unicap.internetbanking.negocio;
 
 import br.unicap.internetbanking.dados.RepositorioClientesArray;
 import br.unicap.internetbanking.dados.RepositorioContasArray;
+import br.unicap.internetbanking.excecoes.ClienteExistenteException;
 import br.unicap.internetbanking.excecoes.ClienteInexistenteException;
+import br.unicap.internetbanking.excecoes.ContaExistenteException;
 import br.unicap.internetbanking.excecoes.ContaInexistenteException;
 import br.unicap.internetbanking.excecoes.SaldoInsuficienteException;
 
@@ -39,21 +41,20 @@ public class Fachada {
 	
 	//Cliente
 	
-	public void atualizar (Cliente c) {
+	public void atualizar (Cliente c) throws ClienteInexistenteException {
 		clientes.atualizar(c);
 	}
 	public Cliente procurarCliente(String cpf) throws ClienteInexistenteException {
 		return clientes.procurar(cpf);
 	}
-	public void cadastrar(Cliente c) {
+	public void cadastrar(Cliente c) throws ClienteExistenteException {
 		clientes.inserir(c);
 	}
-	public void descadastrarCliente(String cpf) {
+	public void descadastrarCliente(String cpf) throws ClienteInexistenteException {
 		clientes.remover(cpf);
 	}
 	
-	//Conta
-	
+	//Conta	
 
 	public void atualizar (ContaAbstrata conta) throws ContaInexistenteException{
 		contas.atualizar(conta);
@@ -61,20 +62,18 @@ public class Fachada {
 	public ContaAbstrata procurarConta(String numeroConta) throws ContaInexistenteException {
 		return contas.procurar(numeroConta);
 	}
-	public void cadastrar(ContaAbstrata conta) throws ClienteInexistenteException {
+	public void cadastrar(ContaAbstrata conta) throws ClienteInexistenteException, ContaExistenteException {
 		Cliente cliente = conta.getCliente();
 			if (cliente != null) {
 				clientes.procurar(cliente.getCPF());
 				contas.inserir(conta);
-			} else {
-				System.out.println("Cliente Não Declarando");
 			}
 	}
 	
-	public void removerConta(String n) {
+	public void removerConta(String n) throws ContaInexistenteException {
 		contas.remover(n);
 	}
-	public void creditar(String n, double v) throws ContaInexistenteException{
+	public void creditar(String n, double v) throws ContaInexistenteException, SaldoInsuficienteException {
 		contas.creditar(n, v);
 	}
 	public void debitar(String n, double v) throws SaldoInsuficienteException, ContaInexistenteException {

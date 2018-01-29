@@ -6,7 +6,7 @@ public class Conta extends ContaAbstrata {
 	
 	
 	public Conta(String numeroConta, Cliente cliente){
-		super(numeroConta,cliente);
+		super(numeroConta,0,cliente);
 	}
 	
 	public Conta(String numeroConta, double saldo, Cliente cliente){

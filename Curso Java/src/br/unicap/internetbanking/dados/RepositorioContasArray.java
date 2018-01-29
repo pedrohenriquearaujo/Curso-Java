@@ -1,5 +1,6 @@
 package br.unicap.internetbanking.dados;
 
+import br.unicap.internetbanking.excecoes.ContaExistenteException;
 import br.unicap.internetbanking.excecoes.ContaInexistenteException;
 import br.unicap.internetbanking.interfaces.IRepositorioContas;
 import br.unicap.internetbanking.negocio.ContaAbstrata;
@@ -32,13 +33,15 @@ public class RepositorioContasArray implements IRepositorioContas {
 		}
 	}
 	
-	public void remover (String numeroConta){
+	public void remover (String numeroConta) throws ContaInexistenteException{
 		
 		if(existe(numeroConta)){
 			int i = procurarIndice(numeroConta);
 			contas[i] = contas[indice - 1];
 			contas[indice - 1] = null;
 			indice = indice - 1;			
+		}else {
+			throw new ContaInexistenteException(numeroConta);
 		}		
 	}
 	

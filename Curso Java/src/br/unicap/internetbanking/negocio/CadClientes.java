@@ -1,7 +1,9 @@
 package br.unicap.internetbanking.negocio;
 
 import br.unicap.internetbanking.dados.RepositorioClientesArray;
+import br.unicap.internetbanking.excecoes.ClienteExistenteException;
 import br.unicap.internetbanking.excecoes.ClienteInexistenteException;
+import br.unicap.internetbanking.excecoes.ContaInexistenteException;
 
 
 public class CadClientes {
@@ -12,20 +14,20 @@ public class CadClientes {
 		this.r = r;
 	}
 	
-	public void inserir(Cliente c) {
+	public void inserir(Cliente c) throws ClienteExistenteException{
 		if(!r.existe(c.getCPF())){		
 			r.inserir(c);
 		}else{
-			System.out.println("Cliente já Existe");
+			throw new ClienteExistenteException(c.getNome());
 		}
 	}
-	public void remover(String CPF) {
+	public void remover(String CPF) throws ClienteInexistenteException {
 		r.remover(CPF);
 	}
 	public Cliente procurar(String CPF) throws ClienteInexistenteException {
 		return r.procurar(CPF);		
 	}
-	public void atualizar(Cliente c) {
+	public void atualizar(Cliente c) throws ClienteInexistenteException {
 		r.atualizar(c);
 	} 
 
