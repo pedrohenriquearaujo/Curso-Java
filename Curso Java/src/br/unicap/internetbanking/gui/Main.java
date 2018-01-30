@@ -39,8 +39,8 @@ public class Main {
 	
 		
 		try {
-			cliente = f.procurarCliente("087");
-			System.out.println(cliente.getCPF());
+			cliente = f.procurarCliente("077");
+			System.out.println(cliente.getNome());
 			}
 		catch (ClienteInexistenteException e) {	
 			

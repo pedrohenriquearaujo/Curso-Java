@@ -1,6 +1,6 @@
 package br.unicap.internetbanking.negocio;
 
-public class Cliente {
+public class Cliente implements Comparable<Cliente>{
 	private String CPF;
 	private String nome;
 	private Conta c;
@@ -41,6 +41,11 @@ public class Cliente {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+	
+	public int compareTo(Cliente c) {		
+		return this.CPF.compareTo(c.CPF);
+	}
+	
 	
 
 }

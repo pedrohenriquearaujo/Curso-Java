@@ -1,5 +1,6 @@
 package br.unicap.internetbanking.negocio;
 
+import br.unicap.internetbanking.dados.RepositorioContaMap;
 import br.unicap.internetbanking.dados.RepositorioContasArray;
 import br.unicap.internetbanking.excecoes.ContaExistenteException;
 import br.unicap.internetbanking.excecoes.ContaInexistenteException;
@@ -7,12 +8,16 @@ import br.unicap.internetbanking.excecoes.SaldoInsuficienteException;
 
 public class CadContas {
 	
-	private RepositorioContasArray r;
-	
+	//private RepositorioContasArray r;
+	private RepositorioContaMap r;
+	/*
 	public CadContas(RepositorioContasArray r) {
 		this.r = r;
-	}
+	}*/
 	
+	public CadContas(RepositorioContaMap r) {
+		this.r = r;
+	}
 
 	public void inserir(ContaAbstrata c) throws ContaExistenteException {
 		
