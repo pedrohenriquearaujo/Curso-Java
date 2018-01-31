@@ -36,6 +36,10 @@ public class CadClientes {
 	public void atualizar(Cliente c) throws ClienteInexistenteException {
 		r.atualizar(c);
 	} 
+	
+	public void exibir(){
+		r.exibir();
+	} 
 
 
 }

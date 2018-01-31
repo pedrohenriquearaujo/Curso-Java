@@ -77,6 +77,12 @@ public class RepositorioClientesArray implements IRepositorioClientes {
 		
 		return c;
 	}
+
+	@Override
+	public void exibir() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
 

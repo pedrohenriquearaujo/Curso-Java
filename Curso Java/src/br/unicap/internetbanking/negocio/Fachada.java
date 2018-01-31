@@ -57,6 +57,9 @@ public class Fachada {
 	public void descadastrarCliente(String cpf) throws ClienteInexistenteException {
 		clientes.remover(cpf);
 	}
+	public void exibir() {
+		clientes.exibir();
+	}
 	
 	//Conta	
 

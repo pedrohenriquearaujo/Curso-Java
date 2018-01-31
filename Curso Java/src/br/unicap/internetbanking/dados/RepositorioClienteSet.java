@@ -1,6 +1,7 @@
 package br.unicap.internetbanking.dados;
 
 import java.util.Iterator;
+import java.util.Set;
 import java.util.TreeSet;
 
 import br.unicap.internetbanking.excecoes.ClienteExistenteException;
@@ -71,6 +72,13 @@ public class RepositorioClienteSet implements IRepositorioClientes {
 	public void remover(String CPF) throws ClienteInexistenteException {
 		Cliente c = procurar(CPF);
 		clientes.remove(c);
+	}
+	
+	public void exibir() {
+		
+		Set clientes = new TreeSet(this.clientes);
+		System.out.println(clientes);
+		
 	}
 
 }

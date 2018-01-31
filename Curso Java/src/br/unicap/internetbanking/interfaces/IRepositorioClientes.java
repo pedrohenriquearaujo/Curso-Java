@@ -12,5 +12,6 @@ public interface IRepositorioClientes {
 	public void inserir(Cliente c) throws ClienteExistenteException;
 	public Cliente procurar(String cpf) throws ClienteInexistenteException;
 	public void remover(String cpf) throws ClienteInexistenteException;
+	public void exibir();
 	
 }

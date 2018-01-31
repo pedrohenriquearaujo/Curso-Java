@@ -42,8 +42,17 @@ public class Cliente implements Comparable<Cliente>{
 		this.endereco = endereco;
 	}
 	
+	public boolean equals(Cliente c){		
+		return CPF.equals(c.getCPF());		
+	}
+	
+	@Override
+	public String toString() {		
+		return this.nome;
+	}
+	
 	public int compareTo(Cliente c) {		
-		return this.CPF.compareTo(c.CPF);
+		return this.nome.compareTo(c.getNome());
 	}
 	
 	

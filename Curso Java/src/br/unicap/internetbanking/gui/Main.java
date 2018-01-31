@@ -1,5 +1,6 @@
 package br.unicap.internetbanking.gui;
 
+import br.unicap.internetbanking.excecoes.ClienteExistenteException;
 import br.unicap.internetbanking.excecoes.ClienteInexistenteException;
 import br.unicap.internetbanking.excecoes.ContaInexistenteException;
 import br.unicap.internetbanking.excecoes.SaldoInsuficienteException;
@@ -17,39 +18,50 @@ public class Main {
 	public static void main(String[] args) throws Exception  {
 		
 		Fachada f = Fachada.getInstacia();
-		
-		Cliente cliente2 =  new Cliente("077", "Pedro",TipoCliente.CLASS);
-	
+			
 		Cliente cliente =  new Cliente("077", "Pedro","Av. Dantas Barreto","Boa Vista","5300-000","57");
-		f.cadastrar(cliente);
+		
 		
 		
 		ContaAbstrata c = new Conta("1", 100,cliente);		
 		ContaAbstrata p = new Poupanca("2",100,cliente);
 		ContaAbstrata b = new ContaBonificada("3", 100,cliente);
 		ContaAbstrata i = new ContaImposto("4", 100,cliente);
-		
+		Conta conta = new Conta("1", 100,cliente);
 	
 		
-		f.cadastrar(c);
-		f.cadastrar(p);
-		f.cadastrar(b);
-		f.cadastrar(i);
+		//f.cadastrar(c);
+		//f.cadastrar(p);
+		//f.cadastrar(b);
+		//f.cadastrar(i);
 		
 	
 		
 		try {
-			cliente = f.procurarCliente("077");
-			System.out.println(cliente.getNome());
-			}
-		catch (ClienteInexistenteException e) {	
 			
+			f.cadastrar(new Cliente("6", "Pedro","Av. Dantas Barreto","Boa Vista","5300-000","57"));
+			f.cadastrar(new Cliente("5", "Fernando","Av. Dantas Barreto","Boa Vista","5300-000","57"));
+			f.cadastrar(new Cliente("4", "Jose","Av. Dantas Barreto","Boa Vista","5300-000","57"));
+			f.cadastrar(new Cliente("3", "Joao","Av. Dantas Barreto","Boa Vista","5300-000","57"));
+			f.cadastrar(new Cliente("2", "Matheus","Av. Dantas Barreto","Boa Vista","5300-000","57"));
+			f.cadastrar(new Cliente("1", "Carlos","Av. Dantas Barreto","Boa Vista","5300-000","57"));
+			
+			
+			f.descadastrarCliente("3");
+			f.exibir();
+			/*cliente = f.procurarCliente("077");
+			f.procurarConta(conta.getNumero());
+			conta.debitar(500);
+			System.out.println(conta.getSaldo());*/
+			}
+		catch(ClienteExistenteException e){
+				System.out.println(e.getMessage());
+				System.out.println("CPF: " + e.getNome());
+		}catch(ClienteInexistenteException e){
 			System.out.println(e.getMessage());
-			//System.out.println("Conta: " + e.getNumeroConta());
-			
-			//System.out.println("Saldo: " + e.getSaldoAtual());
-			
-			}
+			System.out.println("CPF: " + e.getCPF());
+		}
+		
 		
 		
 		/*
